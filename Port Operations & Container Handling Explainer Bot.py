@@ -2,16 +2,9 @@ import streamlit as st
 from google import genai
 from google.genai import types
 
-# ----------------------------
-# Gemini Client Initialization
-# ----------------------------
-# ⚠️ Replace "YOUR_API_KEY_HERE" with your actual API key
 client = genai.Client(api_key="AIzaSyApuy8TeUHabFzS7XOWI6Zw7P_LXTGhddk")
 MODEL_NAME = "gemini-3-flash-preview"
 
-# ----------------------------
-# System Prompt (Domain Restricted)
-# ----------------------------
 SYSTEM_PROMPT = """
 You are a domain-restricted AI assistant dedicated only to explaining
 port operations, container handling, vessel arrival, yard operations,
@@ -23,21 +16,18 @@ scheduling, cargo approval, or container movement.
 Your responses are for training and awareness only.
 """
 
-# ----------------------------
-# Streamlit UI
-# ----------------------------
 st.set_page_config(page_title="Port Operations Explainer Bot", layout="centered")
 st.title("🚢 Port Operations & Container Handling Explainer Bot")
 st.caption("Informational AI for Ports & Maritime Logistics Training")
 
-# User Input
+
 user_input = st.text_area(
     "Ask a question about port operations or container handling:",
     placeholder="e.g., Explain container handling process",
     height=120
 )
 
-# Generate Button
+
 if st.button("Explain"):
     if not user_input.strip():
         st.warning("Please enter a port-related question.")
